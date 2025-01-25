@@ -1,10 +1,22 @@
-import { useState } from 'react'
+import { useState ,useEffect} from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 import Guns from "./componentes/Gun/Guns"
 function App() {
-  const [Detergentes, setCount] = useState(0)
+  const [Detergentes, setDetergente] = useState(0)
+  const [iniciado, setIniciado] = useState(true);
+  useEffect(() => {
+      let interval:any;
+      if (iniciado) {
+          interval = setInterval(() => {
+              setDetergente(prevTempo => prevTempo + 1);
+          }, 1000);
+      } else {
+          clearInterval(interval);
+      }
+      return () => clearInterval(interval);
+  }, [iniciado]);
 
   return (
     <div className='App'> 
