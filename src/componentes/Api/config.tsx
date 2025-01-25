@@ -27,29 +27,29 @@ export async function firstLogin(session:Session) {
         return
     } else {
         await updateGun({nome:"Arco de bolha",block:false,session:session,valor_segundo:1,valor_click:3,valor_desbloqueio:0,codigo_imagem:"https://hcsmsnyvmcgkgvnppedi.supabase.co/storage/v1/object/sign/assets/guns/New%20Piskel%20(1).png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJhc3NldHMvZ3Vucy9OZXcgUGlza2VsICgxKS5wbmciLCJpYXQiOjE3Mzc3OTY2NzIsImV4cCI6NDg5MTM5NjY3Mn0.GuBVU8QY1zKIfCDLLDIVM48Q--Sm8t-LAM3Mjj57Okk&t=2025-01-25T09%3A17%3A52.407Z",
-          tipoUpgrade:"Autoclicker",valorUpgrade:700,adquiridoUpdate:false
+          tipoUpgrade:"Autoclicker",valorUpgrade:700,adquiridoUpgrade:false
         })
 
 
 
         await updateGun({nome:"Arminha bolhuda",block:true,session:session,valor_segundo:10,valor_click:10,valor_desbloqueio:100,codigo_imagem:"https://hcsmsnyvmcgkgvnppedi.supabase.co/storage/v1/object/sign/assets/guns/New%20Piskel%20(2).png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJhc3NldHMvZ3Vucy9OZXcgUGlza2VsICgyKS5wbmciLCJpYXQiOjE3Mzc3OTY2OTQsImV4cCI6NDg5MTM5NjY5NH0.4TE5uUlPTceTFesm7SFLeJycgfH106m-WOx_JXjzyuI&t=2025-01-25T09%3A18%3A14.430Z",
-          tipoUpgrade:"Multiplicador",valorUpgrade:1500,adquiridoUpdate:false
+          tipoUpgrade:"Multiplicador",valorUpgrade:1500,adquiridoUpgrade:false
         })
 
         await updateGun({nome:"Bolhão Erlenmeyer",block:true,session:session,valor_segundo:20,valor_desbloqueio:850,valor_click:50,codigo_imagem:"https://hcsmsnyvmcgkgvnppedi.supabase.co/storage/v1/object/sign/assets/guns/New%20Piskel%20(4).png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJhc3NldHMvZ3Vucy9OZXcgUGlza2VsICg0KS5wbmciLCJpYXQiOjE3Mzc3OTY3MjEsImV4cCI6MTc0NjQzNjcyMX0.Kzje07TQzLO57_dj8eKhuUcD1KC44FU6jWs382oGgLY&t=2025-01-25T09%3A18%3A41.229Z",
-          tipoUpgrade:"Acelerador",valorUpgrade:2000,adquiridoUpdate:false
+          tipoUpgrade:"Acelerador",valorUpgrade:2000,adquiridoUpgrade:false
 
         })
         await updateGun({nome:"Aquecedor de bolhas",block:true,session:session,valor_desbloqueio:1500,valor_segundo:30,valor_click:150,codigo_imagem:"https://hcsmsnyvmcgkgvnppedi.supabase.co/storage/v1/object/sign/assets/guns/New%20Piskel%20(5).png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJhc3NldHMvZ3Vucy9OZXcgUGlza2VsICg1KS5wbmciLCJpYXQiOjE3Mzc3OTY3MzQsImV4cCI6NDg5MTM5NjczNH0.5XBZRGSNkcPZZWPh-3wbBOhpuCE2tA91H_Iq12-M3TE&t=2025-01-25T09%3A18%3A54.189Z",
-          tipoUpgrade:"Multiplicador",valorUpgrade:3000,adquiridoUpdate:false
+          tipoUpgrade:"Multiplicador",valorUpgrade:3000,adquiridoUpgrade:false
 
         })
         await updateGun({nome:"Bolha de aço ",block:true,session:session,valor_segundo:55,valor_desbloqueio:5000,valor_click:500,codigo_imagem:"https://hcsmsnyvmcgkgvnppedi.supabase.co/storage/v1/object/sign/assets/guns/New%20Piskel%20(7).png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJhc3NldHMvZ3Vucy9OZXcgUGlza2VsICg3KS5wbmciLCJpYXQiOjE3Mzc4MDMyNjAsImV4cCI6MTczODQwODA2MH0.fvNg8dDmpeOBOlOVvIHSzcfRhFqCpBjwfCSPvcGS124&t=2025-01-25T11%3A07%3A40.279Z",
-          tipoUpgrade:"Acelerador",valorUpgrade:8000,adquiridoUpdate:false
+          tipoUpgrade:"Acelerador",valorUpgrade:8000,adquiridoUpgrade:false
 
         })
         await updateGun({nome:"Bolha atômica",block:true,session:session,valor_segundo:3,valor_desbloqueio:10000,valor_click:5,codigo_imagem:"https://hcsmsnyvmcgkgvnppedi.supabase.co/storage/v1/object/sign/assets/guns/New%20Piskel%20(3).png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJhc3NldHMvZ3Vucy9OZXcgUGlza2VsICgzKS5wbmciLCJpYXQiOjE3Mzc3OTY3MTAsImV4cCI6NDg5MTM5NjcxMH0.Y37XExB6noXYynA4tTTxCkNZBeU5sqWSd5VRs4EAZj8&t=2025-01-25T09%3A18%3A31.018Z",
-          tipoUpgrade:"Inexistente",valorUpgrade:0,adquiridoUpdate:false
+          tipoUpgrade:"Inexistente",valorUpgrade:0,adquiridoUpgrade:false
         })
        
 
@@ -92,7 +92,7 @@ async function updateGun({
 
     tipoUpgrade,
     valorUpgrade,
-    adquiridoUpdate
+    adquiridoUpgrade
 
   }: {
     nome:string
@@ -105,7 +105,7 @@ async function updateGun({
 
     tipoUpgrade:string,
     valorUpgrade:number,
-    adquiridoUpdate:boolean
+    adquiridoUpgrade:boolean
   }) {
     try {
       if (!session?.user) throw new Error('No user on the session!')
@@ -121,7 +121,7 @@ async function updateGun({
 
         tipoUpgrade:tipoUpgrade,
         valorUpgrade:valorUpgrade,
-        adquiridoUpdate:adquiridoUpdate
+        adquiridoUpgrade:adquiridoUpgrade
       }
       const { error } = await supabase.from('gun').insert(updates)
       if (error) {

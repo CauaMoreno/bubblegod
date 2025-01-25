@@ -18,19 +18,18 @@ type Arma = {
   tipoUpgrade:"Autoclicker"|"Multiplicador"|"Acelerador"|"Inexistente"
 }
 
-function Game({armas,setUpgradeVisible,showLore}:{armas:Arma[],setUpgradeVisible:any,showLore:any}) {
-  const [Detergentes, setDetergente] = useState(0)
+function Game({armas,setUpgradeVisible,showLore,detergente,setDetergente}:{armas:Arma[],setUpgradeVisible:any,showLore:any,detergente:number,setDetergente:any}) {
  
   useEffect(()=>{
     showLore()
   },[])
   function detergenteClick(dClick:number){
-    setDetergente(Detergentes+dClick)
+    setDetergente(detergente+dClick)
   }
   function comprar(dNumber:number):boolean{
 
-    if(Detergentes-dNumber>0){
-      setDetergente(Detergentes-dNumber)
+    if(detergente-dNumber>0){
+      setDetergente(detergente-dNumber)
       showLore()
       return true
     }
@@ -43,7 +42,7 @@ function Game({armas,setUpgradeVisible,showLore}:{armas:Arma[],setUpgradeVisible
         <span>Bubble Gun</span>
         <div className='detergentes'>
           <img src='https://hcsmsnyvmcgkgvnppedi.supabase.co/storage/v1/object/sign/assets/guns/New%20Piskel%20(6).png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJhc3NldHMvZ3Vucy9OZXcgUGlza2VsICg2KS5wbmciLCJpYXQiOjE3Mzc4MDMyNDUsImV4cCI6MTczODQwODA0NX0.zhs2imk2leXGe2-VUje0I8ynhIrScDduPhVU30RVJK4&t=2025-01-25T11%3A07%3A25.901Z'></img>
-          <span>{Detergentes.toFixed(1)}</span>
+          <span>{detergente.toFixed(1)}</span>
         </div>
       </header>
       <div className='ArmasContainer'>

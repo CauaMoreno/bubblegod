@@ -17,14 +17,28 @@ type UpgradeContainer = {
     visible:boolean
     setVisible:any
     armas:Arma[],
-    setArmas:any
+    setArmas:any,
+    detergente:number,
+    setDetergente:any
 }
 
 
 
-function UpgradeContainer({visible, setVisible, armas,setArmas}: UpgradeContainer){
-    console.log("nicolas cage",armas)
+function UpgradeContainer({visible, setVisible, armas,setArmas,setDetergente,detergente}: UpgradeContainer){
     
+    function handleClick(arma:Arma){
+        const valorUpgrade = arma.valorUpgrade
+        console.log("nicolas 3",armas,detergente)
+        if(detergente-valorUpgrade>=0){
+            setDetergente(detergente-valorUpgrade)
+            const index = armas.indexOf(arma)
+            const arrN = armas.slice()
+            arrN[index].adquiridoUpgrade=true
+            setArmas(arrN)
+            window.alert("comprado")
+        }
+        
+    }
     if(visible){
         return(
             <div className="UpgradeContainer">
@@ -33,11 +47,11 @@ function UpgradeContainer({visible, setVisible, armas,setArmas}: UpgradeContaine
                     armas.map(arma => (
                         <div key={arma.nome} className='upgradeData'>
                             
-                            <div className='data'>
+                            <div className='data' >
                                 <p className='name'>{arma.nome}</p>
                                 <p className='type'>{arma.tipoUpgrade}</p>
                             </div>
-                            <p className='button'>{arma.valorUpgrade}</p>
+                            <p className='button' onClick={()=>handleClick(arma)}>{arma.valorUpgrade}</p>
 
                             
                         </div>

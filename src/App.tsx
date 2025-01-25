@@ -63,6 +63,7 @@ function App() {
     const [armas,setArmas] = useState<Arma[]>([]);
     const [loreIndex,setLoreIndex] = useState(0);
     const [loreVisible,setLoreVisible] = useState(false);
+    const [Detergentes, setDetergente] = useState(0)
 
     const [showUpgrades,setShowUpgrade]=useState(false)
     let ggg:Arma[] =[];
@@ -96,14 +97,21 @@ function App() {
                     <Routes>
                         <Route path="/bubblegod/" element={<Login setSession={setSession} />} /> 
                         
-                        <Route path="/bubblegod/game" element={<Game armas={armas} setUpgradeVisible={setShowUpgrade}  showLore={()=>{
+                        <Route path="/bubblegod/game" element={<Game armas={armas} setDetergente={setDetergente} detergente={Detergentes}setUpgradeVisible={setShowUpgrade}  showLore={()=>{
                             setLoreVisible(true)
                         }}  />} /> 
 
                         {/* <Route path="/bubblegod/powerup" element={<PowerUps powerups={elementos}  />} />  */}
                     </Routes>
             </BrowserRouter>
-            <UpgradeContainer armas={armas} setArmas={setArmas} visible={showUpgrades} setVisible={setShowUpgrade}></UpgradeContainer>
+            <UpgradeContainer 
+                armas={armas} 
+                setArmas={setArmas} 
+                visible={showUpgrades} 
+                setDetergente={setDetergente}
+                detergente={Detergentes}
+                setVisible={setShowUpgrade}>
+            </UpgradeContainer>
             <LoreContainer 
                 titulo={Lores.get(loreIndex)?.titulo!}
                 lore={Lores.get(loreIndex)?.lore!}
