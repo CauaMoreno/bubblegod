@@ -1,35 +1,30 @@
 import { useState ,useEffect} from 'react'
-import { createClient, Session } from '@supabase/supabase-js'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './Game.css'
 import Guns from "../../componentes/Gun/Guns"
 import UpgradeContainer from '../../componentes/UpgradeContainer/UpgradeContainer'
-const supabaseUrl = 'https://hcsmsnyvmcgkgvnppedi.supabase.co';
-const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imhjc21zbnl2bWNna2d2bnBwZWRpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Mzc3NzAxMjksImV4cCI6MjA1MzM0NjEyOX0.hjWIEc7zSW5xL7X2tHydujCl55yDPWY6aT30hi-80NM'
-const supabase = createClient(supabaseUrl, supabaseKey)
 
+
+type Upgrade = {
+  nome:string
+  valor:number
+  aplicado:boolean
+  tipo:"Autoclicker"|"Multiplicador"|"Acelerador"|"Inexistente"
+}
 type Arma = {
   nome:string,
   codigo_imagem:string,
   valor_segundo:number,
   valor_click:number,
   block:boolean,
-  valor_desbloqueio:number
+  valor_desbloqueio:number,
+  upgrade:Upgrade,
 }
 
-type Upgrade = {
-  nome:string
-  valor:number
-  tipo:string
-  aplicado:boolean
-  modificadoValor:number
-}
 
-function Game({armas}:{armas:Arma[]}) {
+
+function Game({armas,setUpgradeVisible}:{armas:Arma[],setUpgradeVisible:any}) {
   const [Detergentes, setDetergente] = useState(0)
   //const [iniciado, setIniciado] = useState(false);
-  const [visibilidade, setVisibilidade] = useState(false);
  
 
   function detergenteClick(dClick:number){
@@ -67,6 +62,7 @@ function Game({armas}:{armas:Arma[]}) {
                     detergenteClick={detergenteClick}
                     comprar={comprar}
                     valor={arma.valor_desbloqueio}
+                    upgrade={arma.upgrade}
                   >
                   </Guns>
                 )
@@ -74,12 +70,10 @@ function Game({armas}:{armas:Arma[]}) {
             )
           } 
           <button onClick={ () => {
-            setVisibilidade(true)
+            setUpgradeVisible(true)
           } }>UPGRADES</button>
       </div>
-      {
-          <UpgradeContainer setVisible = {setVisibilidade} visible={visibilidade}></UpgradeContainer>
-      }
+      
     </div>
     )
 }
