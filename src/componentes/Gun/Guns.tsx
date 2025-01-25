@@ -10,12 +10,12 @@ type Arma = {
     detergenteClick:Function,
     comprar:Function,
     valor:number,
-    
+    detergente:number,
     valorUpgrade:number
     aplicadoUpgrade:boolean
     tipoUpgrade:"Autoclicker"|"Multiplicador"|"Acelerador"|"Inexistente"
 }
-function Guns({nome,url,dClick,dSecond,locked,detergenteClick,comprar,valor, aplicadoUpgrade, tipoUpgrade}:Arma) {
+function Guns({nome,url,dClick,dSecond,locked,detergenteClick,comprar,valor, aplicadoUpgrade,detergente, tipoUpgrade}:Arma) {
     const [lock,setLock] = useState(locked)
     const [available,setAvailable] = useState(true)
     function unlock(){
@@ -37,25 +37,25 @@ function Guns({nome,url,dClick,dSecond,locked,detergenteClick,comprar,valor, apl
                         
                         onClick={()=>{
                             if(aplicadoUpgrade && tipoUpgrade=="Autoclicker"){
-                                window.setInterval(()=>{
-                                    detergenteClick(dClick)
-                                },100)
                                 return
                             }
-                            
-                                setAvailable(false)
-                                let tempo = dSecond*10
-                                if(tipoUpgrade=='Acelerador' && aplicadoUpgrade){
-                                    tempo=dSecond*10*0.6
+                            setAvailable(false)
+                            let tempo = dSecond*120
+                            console.log(tempo)
+
+                            if(tipoUpgrade=='Acelerador' && aplicadoUpgrade){
+                                tempo=tempo*0.75
+                                console.log(tempo)
+                            }
+                            setTimeout(()=> {
+                                let detergeIncrease = dClick
+                                setAvailable(true)
+                                if(tipoUpgrade=="Multiplicador" && aplicadoUpgrade){
+                                    detergeIncrease =1.5*dClick
                                 }
-                                setTimeout(()=> {
-                                    let detergeIncrease = dClick
-                                    setAvailable(true)
-                                    if(tipoUpgrade=="Multiplicador" && aplicadoUpgrade){
-                                        detergeIncrease*=1.5
-                                    }
-                                    detergenteClick(detergeIncrease)
-                                }, tempo)
+                                detergenteClick(detergeIncrease);
+
+                            }, tempo)
                             
                            
                         }

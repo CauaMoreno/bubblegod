@@ -1,5 +1,6 @@
 import { data } from 'react-router'
 import './UpgradeContainer.css'
+import { useEffect, useState } from 'react'
 
 type Arma = {
     nome:string,
@@ -25,42 +26,66 @@ type UpgradeContainer = {
 
 
 function UpgradeContainer({visible, setVisible, armas,setArmas,setDetergente,detergente}: UpgradeContainer){
-    
+    const [iniciado, setIniciado] = useState(false);
+    useEffect(() => {
+        let interval:any;
+
+        if (iniciado) {
+            interval = setInterval(() => {
+                setDetergente((detergente: number) => detergente + 1);
+            }, 200);
+        } else {
+            clearInterval(interval);
+        }
+
+        return () => clearInterval(interval);
+    }, [iniciado]);
+
     function handleClick(arma:Arma){
         const valorUpgrade = arma.valorUpgrade
-        console.log("nicolas 3",armas,detergente)
-        if(detergente-valorUpgrade>=0){
+        console.log(arma)
+        if(detergente-valorUpgrade>=0 && !arma.adquiridoUpgrade && !arma.block){
             setDetergente(detergente-valorUpgrade)
             const index = armas.indexOf(arma)
             const arrN = armas.slice()
             arrN[index].adquiridoUpgrade=true
             setArmas(arrN)
             window.alert("comprado")
+            if(arma.tipoUpgrade === "Autoclicker"){
+                setIniciado(true)
+            }
         }
         
     }
     if(visible){
         return(
             <div className="UpgradeContainer">
-                <h1>UPGRADES</h1>
-                {
-                    armas.map(arma => (
-                        <div key={arma.nome} className='upgradeData'>
-                            
-                            <div className='data' >
-                                <p className='name'>{arma.nome}</p>
-                                <p className='type'>{arma.tipoUpgrade}</p>
-                            </div>
-                            <p className='button' onClick={()=>handleClick(arma)}>{arma.valorUpgrade}</p>
+                <div className='fitCont'>
+                    {
+                        armas.map(arma => (
+                            !arma.adquiridoUpgrade?
+                            (<div key={arma.nome} className='upgradeData'>
+                                <div className='data' >
+                                    <p className='name'>{arma.nome}</p>
+                                    <p className='type'>{arma.tipoUpgrade}</p>
+                                </div>
+                                <p className='button' onClick={()=>handleClick(arma)}>{arma.valorUpgrade}</p>
+                            </div>):
+                            (<div key={arma.nome} className='upgradeData block'>
+                                <div className='data' >
+                                    <p className='name'>{arma.nome}</p>
+                                    <p className='type'>{arma.tipoUpgrade}</p>
+                                </div>
+                                <p className='button' >{arma.valorUpgrade}</p>
+                            </div>)
 
-                            
-                        </div>
-                    ))
+                        ))
+                    }
+                    <button className='upSair' onClick={()=>{setVisible(false)}}>
+                        Sair
+                    </button>
+                </div>
                 
-                }
-                <button className='upSair' onClick={()=>{setVisible(false)}}>
-                    Sair
-                </button>
             </div>
         )
     }

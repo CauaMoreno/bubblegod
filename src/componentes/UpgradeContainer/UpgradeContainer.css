@@ -11,11 +11,24 @@
     box-shadow: 5px 5px 5px rgba(220, 220, 220, 0.178);
     background-color: #a6b5be;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     flex-direction: column;
     color: black;
     border-radius: 5px;
+    .fitCont{
+        
+        width: 80%;
+        height: 60%;
+        padding-bottom: 30px;
+        padding-top: 30px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        color: black;
+        border-radius: 5px;
+    }
     .upgradeData{
         display: flex;
         flex-direction: row;
@@ -60,6 +73,10 @@
     }
     .upSair{
         margin-top: 20px;
+        background-color: #2040568b;
+        color: white;
+        border-radius: 5px;
+        width: 380px;
     }
 }
 h1 {

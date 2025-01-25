@@ -2,6 +2,7 @@ import { useState ,useEffect} from 'react'
 import './Game.css'
 import Guns from "../../componentes/Gun/Guns"
 import UpgradeContainer from '../../componentes/UpgradeContainer/UpgradeContainer'
+import { updateProfile } from '../../componentes/Api/config'
 
 
 
@@ -18,7 +19,8 @@ type Arma = {
   tipoUpgrade:"Autoclicker"|"Multiplicador"|"Acelerador"|"Inexistente"
 }
 
-function Game({armas,setUpgradeVisible,showLore,detergente,setDetergente}:{armas:Arma[],setUpgradeVisible:any,showLore:any,detergente:number,setDetergente:any}) {
+function Game({armas,setUpgradeVisible,showLore,detergente,setDetergente,salvarjogo}:{
+  armas:Arma[],setUpgradeVisible:any,showLore:any,detergente:number,setDetergente:any,salvarjogo:any}) {
  
   useEffect(()=>{
     showLore()
@@ -50,6 +52,7 @@ function Game({armas,setUpgradeVisible,showLore,detergente,setDetergente}:{armas
           
             armas.map(
               (arma:Arma)=>{
+
                 return (
                   <Guns
                     url={arma.codigo_imagem}
@@ -59,6 +62,7 @@ function Game({armas,setUpgradeVisible,showLore,detergente,setDetergente}:{armas
                     locked={arma.block}
                     detergenteClick={detergenteClick}
                     comprar={comprar}
+                    detergente={detergente}
                      valor={arma.valor_desbloqueio}
                      
                      tipoUpgrade={arma.tipoUpgrade}
@@ -70,9 +74,15 @@ function Game({armas,setUpgradeVisible,showLore,detergente,setDetergente}:{armas
               },
             )
           } 
-          <button onClick={ () => {
+          <div className='options'>
+          <button className="upButton" onClick={ () => {
             setUpgradeVisible(true)
           } }>UPGRADES</button>
+           <button className="upButton" onClick={ () => {
+            salvarjogo()
+          } }>Salvar</button>
+          </div>
+         
       </div>
       
     </div>

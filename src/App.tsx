@@ -6,7 +6,7 @@ import Login from "./paginas//LoginScreen/LoginScreen"
 
 import { BrowserRouter, Route, Routes } from 'react-router'
 import { useEffect, useState } from 'react'
-import { getDataFromUser } from './componentes/Api/config'
+import { getDataFromUser, insereGun, updateGun, updateProfile } from './componentes/Api/config'
 import LoreContainer from './componentes/LoreContainer/LoreContainer'
 import UpgradeContainer from './componentes/UpgradeContainer/UpgradeContainer'
 
@@ -32,15 +32,15 @@ const Lores= new Map<number,Lore>([
         lore:"O cientista Bolhudo Erlenmeyer criou um poderoso agente corrosivo contra a Nação Agulha, cuja ação é letal. No entanto, ele é comercializado ilegalmente, pois foi banido pelas outras nações devido à sua natureza excessivamente agressiva.",
     }],
    
-    [4,{
+    [3,{
         titulo:"Bolha de aço",
         lore:"As bolhas de aço são imparáveis no front, verdadeiras máquinas de guerra. Elas destroem tudo em seu caminho com suas bolhas redondas e coloridas.",
     }],
-    [5,{
+    [4,{
         titulo:"Aquecedor de bolhas",
         lore:"O soldado Kalash Bolhovaldo criou uma poderosa arma de bolhas quentes, capaz de derreter as máquinas da Nação Agulha. Ela tem se tornado cada vez mais popular entre os movimentos rebeldes que lutam contra a Nação Agulha.",
     }],
-    [6,{
+    [5,{
         titulo:"Bolha atômica",
         lore:"Nossa nação criou a máquina mais mortífera de Bolhandia. Será que a Nação Agulha realmente merecia esse fim?",
     }]
@@ -54,7 +54,8 @@ type Arma = {
     block:boolean,
     valor_desbloqueio:number,
     valorUpgrade:number
-    adquiridoUpgrade:boolean
+    adquiridoUpgrade:boolean,
+    id:number,
     tipoUpgrade:"Autoclicker"|"Multiplicador"|"Acelerador"|"Inexistente"
     
   }
@@ -68,14 +69,23 @@ function App() {
     const [showUpgrades,setShowUpgrade]=useState(false)
     let ggg:Arma[] =[];
     
-    
     useEffect(() => {
         if (session){
             attSession()
             attArmas()
+            attProfile()
         };
     }, [session])
+    async function attProfile(){
+        const { data, error } = await supabase.from('user').select().eq('uuid', session?.user.id).single()
 
+        if (error) {
+          console.log(error);
+        } else {
+            console.log(data)
+            setDetergente(data.detergente)
+        }
+    }
     async function attArmas(){
         const { data, error } = await supabase.from('gun').select().eq('autor', session?.user.id)
 
@@ -84,12 +94,38 @@ function App() {
         } else {
             const arrn = data.sort((a:any, b:any) => a.id - b.id).slice()
             setArmas(arrn)
+            console.log(data)
+
             ggg = data
         }
     }
     async function attSession(){
         setSession(session)
-        console.log(session)
+    }
+    async function salvar() {
+        updateProfile({detergente:Detergentes,session:session!})
+        console.log(armas)
+        armas.forEach(async (arma:Arma)=>{
+            // try {
+            //     console.log(arma)
+            //     await updateGun(
+            //         {
+            //             nome:arma.nome,
+            //             block:arma.block
+            //             session:
+            //             valor_segundo:
+            //             valor_click:
+            //             codigo_imagem:
+            //             valor_desbloqueio:
+            //             id:
+            //             tipoUpgrade:
+            //             valorUpgrade:
+            //             adquiridoUpgrade)
+            // } catch (error) {
+            //     console.log(error)
+            // }
+            
+        })
     }
     return(
         <div>
@@ -97,7 +133,7 @@ function App() {
                     <Routes>
                         <Route path="/bubblegod/" element={<Login setSession={setSession} />} /> 
                         
-                        <Route path="/bubblegod/game" element={<Game armas={armas} setDetergente={setDetergente} detergente={Detergentes}setUpgradeVisible={setShowUpgrade}  showLore={()=>{
+                        <Route path="/bubblegod/game" element={<Game salvarjogo={salvar} armas={armas} setDetergente={setDetergente} detergente={Detergentes}setUpgradeVisible={setShowUpgrade}  showLore={()=>{
                             setLoreVisible(true)
                         }}  />} /> 
 
@@ -117,6 +153,7 @@ function App() {
                 lore={Lores.get(loreIndex)?.lore!}
                 visible={loreVisible}
                 increaseIndex={()=>{
+                    console.log("sss")
                     setLoreIndex(loreIndex+1)
                     setLoreVisible(false)
                 }}
