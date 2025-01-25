@@ -1,8 +1,13 @@
 import { useState ,useEffect} from 'react'
+import { createClient, Session } from '@supabase/supabase-js'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 import Guns from "./componentes/Gun/Guns"
+const supabaseUrl = 'https://hcsmsnyvmcgkgvnppedi.supabase.co';
+const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imhjc21zbnl2bWNna2d2bnBwZWRpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Mzc3NzAxMjksImV4cCI6MjA1MzM0NjEyOX0.hjWIEc7zSW5xL7X2tHydujCl55yDPWY6aT30hi-80NM'
+const supabase = createClient(supabaseUrl, supabaseKey)
+
 type Arma = {
   nome:string,
   url:string,
@@ -13,31 +18,30 @@ type Arma = {
 function App() {
   const [Detergentes, setDetergente] = useState(0)
   const [iniciado, setIniciado] = useState(true);
+  const [session, setSession] = useState<Session | null>(null)
+  const [data,setData]= useState()
+
+  async function getDataFromUser() {
+    const { data, error } = await supabase.from('user').select().eq('uuid', session?.user.id).single()
+    console.log(data)
+    if (error) {
+      console.log(error);
+    } else {
+      setData(data)
+    }
+  }
+  async function addDataToUser() {
+    const { data, error } = await supabase.from('user').insert([
+      { uuid:session?.user.id, detergente: 15 }
+    ]);
+    if (error) {
+      console.log(error);
+    } else {
+      console.log(data);
+    }
+  }
+  const [armas, setArmas] = useState<Arma[]>([])
   
-  const [armas, setArmas] = useState<Arma[]>([
-    {
-      url:'https://img.cancaonova.com/cnimages/canais/uploads/sites/6/2014/12/formacao_voce-e-uma-bolha-de-sabao.jpg',
-      dClick:10,
-      dSecond:1,
-      nome:'bubblegun',
-      locked:true,
-    },
-    {
-      url:'https://img.cancaonova.com/cnimages/canais/uploads/sites/6/2014/12/formacao_voce-e-uma-bolha-de-sabao.jpg',
-      dClick:5,
-      dSecond:1,
-      nome:'bubblegun',
-      locked:true,
-    },
-    {
-      url:'https://img.cancaonova.com/cnimages/canais/uploads/sites/6/2014/12/formacao_voce-e-uma-bolha-de-sabao.jpg',
-      dClick:10,
-      dSecond:10,
-      nome:'bubblegun',
-      locked:false,
-    },
-    
-  ])
   function detergentesSegundo():number{
     const armasDesbloqueadas = armas.filter(
       (arma:Arma)=>{

@@ -6,11 +6,9 @@ const supabaseUrl = 'https://hcsmsnyvmcgkgvnppedi.supabase.co';
 const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imhjc21zbnl2bWNna2d2bnBwZWRpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Mzc3NzAxMjksImV4cCI6MjA1MzM0NjEyOX0.hjWIEc7zSW5xL7X2tHydujCl55yDPWY6aT30hi-80NM'
 const supabase = createClient(supabaseUrl, supabaseKey)
 
-export default function App() {
+export default function App({setSession}:{setSession:Function}) {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-  const [session, setSession] = useState<Session | null>(null)
-  const [data,setData]= useState()
   async function signUpWithEmail() {
     const {
       data: { session },
@@ -20,8 +18,7 @@ export default function App() {
       password: password,
     })
     setSession(session)
-    addDataToUser()
-    getDataFromUser()
+
     if (error) console.log(error.message)
     if (!session) console.log('Please check your inbox for email verification!')
   }
@@ -33,30 +30,10 @@ export default function App() {
       password: password,
     })
     setSession(session)
-    getDataFromUser()
-
     if (error) console.log(error.message)
     //login  fracasso
   }
-  async function getDataFromUser() {
-    const { data, error } = await supabase.from('user').select().eq('uuid', session?.user.id).single()
-    console.log(data)
-    if (error) {
-      console.log(error);
-    } else {
-      setData(data)
-    }
-  }
-  async function addDataToUser() {
-    const { data, error } = await supabase.from('user').insert([
-      { uuid:session?.user.id, detergente: 15 }
-    ]);
-    if (error) {
-      console.log(error);
-    } else {
-      console.log(data);
-    }
-  }
+  
   return(
     <div className='LoginScreen'>
         <h1>Bubble Guns</h1>
