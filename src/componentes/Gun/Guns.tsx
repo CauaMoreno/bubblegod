@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import './Guns.css'
 type Arma = {
     nome:string,
     url:string,
@@ -11,14 +12,17 @@ function Guns({nome,url,dClick,dSecond}:Arma) {
   const [count, setCount] = useState(0)
 
   return (
-    <div className='G'>
-        <img src={url}>
-
-        </img>
-        <p>{nome}</p>
-        <p>{dClick} D/c</p>
-        <p>{dSecond} D/s</p>
-
+    <div className='Gun'>
+        <div className='info'>
+            <img src={url}></img>
+            <p>{nome}</p>
+        </div>
+       
+        <div className='status'>
+            <p>{dClick} D/c</p>
+            <p>{dSecond} D/s</p>
+        </div>
+       
     </div>
   )
 }
