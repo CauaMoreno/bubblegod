@@ -60,7 +60,6 @@ function App() {
                     
                      <Route path="/bubblegod/game" element={<Game armas={elementos}  />} /> 
 
-                     <Route path="/bubblegod/powerup" element={<PowerUps powerups={elementos}  />} /> 
                 </Routes>
         </BrowserRouter>
        

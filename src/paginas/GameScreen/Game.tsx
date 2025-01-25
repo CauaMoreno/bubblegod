@@ -4,6 +4,7 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './Game.css'
 import Guns from "../../componentes/Gun/Guns"
+import UpgradeContainer from '../../componentes/UpgradeContainer/UpgradeContainer'
 const supabaseUrl = 'https://hcsmsnyvmcgkgvnppedi.supabase.co';
 const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imhjc21zbnl2bWNna2d2bnBwZWRpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Mzc3NzAxMjksImV4cCI6MjA1MzM0NjEyOX0.hjWIEc7zSW5xL7X2tHydujCl55yDPWY6aT30hi-80NM'
 const supabase = createClient(supabaseUrl, supabaseKey)
@@ -16,16 +17,25 @@ type Arma = {
   block:boolean,
   valor_desbloqueio:number
 }
+
+type Upgrade = {
+  nome:string
+  valor:number
+  tipo:string
+  aplicado:boolean
+  modificadoValor:number
+}
+
 function Game({armas}:{armas:Arma[]}) {
   const [Detergentes, setDetergente] = useState(0)
-  const [iniciado, setIniciado] = useState(false);
+  //const [iniciado, setIniciado] = useState(false);
+  const [visibilidade, setVisibilidade] = useState(false);
  
 
   function detergenteClick(dClick:number){
     setDetergente(Detergentes+dClick)
   }
   function comprar(dNumber:number):boolean{
-    setIniciado(true)
     if(Detergentes-dNumber>0){
       setDetergente(Detergentes-dNumber)
       return true
@@ -61,12 +71,17 @@ function Game({armas}:{armas:Arma[]}) {
                   </Guns>
                 )
               },
-              <button>UPGRADES</button>
             )
           } 
+          <button onClick={ () => {
+            setVisibilidade(true)
+          } }>UPGRADES</button>
       </div>
+      {
+          <UpgradeContainer setVisible = {setVisibilidade} visible={visibilidade}></UpgradeContainer>
+      }
     </div>
-  )
+    )
 }
 
 export default Game
