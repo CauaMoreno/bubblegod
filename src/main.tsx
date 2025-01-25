@@ -1,7 +1,7 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
-import App from './SupabaseConfig.tsx'
+import App from './componentes/LoginScreen/LoginScreen.tsx'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
