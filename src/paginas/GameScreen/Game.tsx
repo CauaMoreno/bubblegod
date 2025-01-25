@@ -16,18 +16,22 @@ type Arma = {
   block:boolean,
   valor_desbloqueio:number
 }
-function Game({armas}:{armas:Arma[]}) {
+function Game({armas,showLore}:{armas:Arma[],showLore:any}) {
   const [Detergentes, setDetergente] = useState(0)
   const [iniciado, setIniciado] = useState(false);
  
-
+  useEffect(()=>{
+    showLore()
+  },[])
   function detergenteClick(dClick:number){
     setDetergente(Detergentes+dClick)
   }
   function comprar(dNumber:number):boolean{
+
     setIniciado(true)
     if(Detergentes-dNumber>0){
       setDetergente(Detergentes-dNumber)
+      showLore()
       return true
     }
     return false
