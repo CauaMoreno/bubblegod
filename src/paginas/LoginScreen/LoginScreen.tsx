@@ -33,7 +33,6 @@ export default function App({setSession}:{setSession:Function}) {
     if (error) console.log(error.message)
     //login  fracasso
   }
-  
   return(
     <div className='LoginScreen'>
         <h1>Bubble Guns</h1>
