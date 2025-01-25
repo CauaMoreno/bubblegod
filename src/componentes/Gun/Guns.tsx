@@ -5,26 +5,44 @@ type Arma = {
     url:string,
     dClick:number,
     dSecond:number,
-    locked:boolean
-
+    locked:boolean,
+    detergenteClick:Function,
+    valor:number
 }
-function Guns({nome,url,dClick,dSecond}:Arma) {
-  const [count, setCount] = useState(0)
-
-  return (
-    <div className='Gun'>
-        <div className='info'>
-            <img src={url}></img>
-            <p>{nome}</p>
-        </div>
+function Guns({nome,url,dClick,dSecond,locked,detergenteClick,valor}:Arma) {
+    if(locked){
+        return (
+            <div className='Gun'>
+                <div className='info'>
+                    <img src={url}></img>
+                    <p>{nome}</p>
+                </div>
+                <div className='status' 
+                    onClick={()=>{                
+                        detergenteClick(dClick)}
+                    }>
+                    <p>{dClick} D/c</p>
+                    <p>{dSecond} D/s</p>
+                </div>
+            </div>
+        )
+    }else{
+        return(
+            <div className='Gun block'>
+                <div className='info'>
+                    <img src={url}></img>
+                    <p>Blocked</p>
+                </div>
+                <div className='status block' >
+                    <p>{valor} detergentes <br/>p/ desbloquear</p>
+                    
+                </div>
+            </div>
+        )
        
-        <div className='status'>
-            <p>{dClick} D/c</p>
-            <p>{dSecond} D/s</p>
-        </div>
-       
-    </div>
-  )
+    }
+ 
+  
 }
 
 export default Guns

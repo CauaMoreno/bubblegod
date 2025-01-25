@@ -16,21 +16,21 @@ function App() {
   
   const [armas, setArmas] = useState<Arma[]>([
     {
-      url:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ8217AgF0fmdDqiONeR7PO0kJXF9m85VrBdA&s',
+      url:'https://img.cancaonova.com/cnimages/canais/uploads/sites/6/2014/12/formacao_voce-e-uma-bolha-de-sabao.jpg',
       dClick:10,
       dSecond:10,
       nome:'bubblegun',
       locked:true,
     },
     {
-      url:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ8217AgF0fmdDqiONeR7PO0kJXF9m85VrBdA&s',
+      url:'https://img.cancaonova.com/cnimages/canais/uploads/sites/6/2014/12/formacao_voce-e-uma-bolha-de-sabao.jpg',
       dClick:5,
       dSecond:5,
       nome:'bubblegun',
       locked:true,
     },
     {
-      url:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ8217AgF0fmdDqiONeR7PO0kJXF9m85VrBdA&s',
+      url:'https://img.cancaonova.com/cnimages/canais/uploads/sites/6/2014/12/formacao_voce-e-uma-bolha-de-sabao.jpg',
       dClick:10,
       dSecond:10,
       nome:'bubblegun',
@@ -53,7 +53,7 @@ function App() {
     console.log(detSec)
     return detSec
   }
-  function cresceClick
+  
   useEffect(() => {
       let interval:any;
       if (iniciado) {
@@ -66,7 +66,10 @@ function App() {
       }
       return () => clearInterval(interval);
   }, [iniciado]);
-
+  function detergenteClick(dClick:number){
+    console.log("aaaaaaaaa")
+    setDetergente(Detergentes+dClick)
+  }
   return (
     <div className='App'> 
       <header>
@@ -87,6 +90,8 @@ function App() {
                   dSecond={arma.dSecond}
                   nome={arma.nome}
                   locked={arma.locked}
+                  detergenteClick={detergenteClick}
+                  valor={10}
                   >
 
                   </Guns>

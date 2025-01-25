@@ -2,11 +2,11 @@
     display: flex;
     justify-content:space-between ;
     align-items: center;
-    min-width:  300px;
     border: 5px solid black;
     border-radius: 10px;
     color: white;
     width: 80%;
+    height: 100px;
     padding-left: 10px;
     padding-right: 10px;
 
@@ -14,6 +14,7 @@
     img{
         width: 80px;
         height: 80px;
+        border-radius: 10px;
     }
     .info{
         display: flex;
@@ -29,7 +30,10 @@
        background-color: black;
        padding: 10px;
        border-radius: 10px;
+       min-width: 120px;
+       
     }
+    
     .status:active{
         background-color: #4d7072;
 
@@ -38,5 +42,8 @@
         padding: 0%;
         margin: 0%;
     }
- 
+   
 }                                                       
+.block{
+    filter: grayscale(1) opacity(0.8);
+}
