@@ -4,7 +4,7 @@
     left: 50%;
     transform: translate(-50%,-50%);
     width: 80%;
-    max-width: 500px;
+    max-width: 380px;
    height: 350px;
    padding-bottom: 30px;
    padding-top: 30px;
@@ -16,7 +16,7 @@
    align-items: center;
    flex-direction: column;
    color: black;
-    border-radius: 10px;
+    border-radius: 5px;
    button{
     width: 120px;
     height: auto;

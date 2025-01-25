@@ -20,16 +20,29 @@ type Lore = {
 const Lores= new Map<number,Lore>([
     [0,{
         titulo:"Bubble Gun",
-        lore:"A guerra entre as nações das Agulhas só se intensifica, e a situação fica cada vez mais crítica. Você, uma corporação bélica, se limita a vender arcos de bolha — a única arma realmente agressiva do seu povo.",
+        lore:"A guerra entre as nações das Agulhas só se intensifica, e a situação fica cada vez mais crítica. Somos, uma corporação bélica, que se limita a vender arcos de bolha, a única arma realmente agressiva do nosso povo.",
     }],
     [1,{
         titulo:"Arma Bolhuda",
-        lore:"Com o avanço da guerra, nossos engenheiros desenvolveram as armas Bolhudas, uma metralhadora automática de bolhas de grande potência. Embora não seja altamente eficaz, é o melhor que temos no momento...",
+        lore:"Com o avanço da guerra, nossos engenheiros desenvolveram as armas Bolhudas, uma metralhadora automática de bolhas de grande potência. Embora sua eficácia seja limitada, é o melhor que temos até agora. No entanto, seu alto custo a torna inacessível para a maioria dos batalhões.",
 
     }],
-    [3,{
-        titulo:"Arminha bobulha",
-        lore:" ",
+    [2,{
+        titulo:"Bolhão Erlenmeyer",
+        lore:"O cientista Bolhudo Erlenmeyer criou um poderoso agente corrosivo contra a Nação Agulha, cuja ação é letal. No entanto, ele é comercializado ilegalmente, pois foi banido pelas outras nações devido à sua natureza excessivamente agressiva.",
+    }],
+   
+    [4,{
+        titulo:"Bolha de aço",
+        lore:"As bolhas de aço são imparáveis no front, verdadeiras máquinas de guerra. Elas destroem tudo em seu caminho com suas bolhas redondas e coloridas.",
+    }],
+    [5,{
+        titulo:"Aquecedor de bolhas",
+        lore:"O soldado Kalash Bolhovaldo criou uma poderosa arma de bolhas quentes, capaz de derreter as máquinas da Nação Agulha. Ela tem se tornado cada vez mais popular entre os movimentos rebeldes que lutam contra a Nação Agulha.",
+    }],
+    [6,{
+        titulo:"Bolha atômica",
+        lore:"Nossa nação criou a máquina mais mortífera de Bolhandia. Será que a Nação Agulha realmente merecia esse fim?",
     }]
 ])
 

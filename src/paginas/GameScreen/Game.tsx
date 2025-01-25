@@ -60,7 +60,7 @@ function Game({armas,showLore}:{armas:Arma[],showLore:any}) {
                     locked={arma.block}
                     detergenteClick={detergenteClick}
                     comprar={comprar}
-                    valor={arma.valor_desbloqueio}
+                     valor={arma.valor_desbloqueio}
                   >
                   </Guns>
                 )
