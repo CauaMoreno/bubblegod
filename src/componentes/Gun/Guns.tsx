@@ -15,10 +15,10 @@ function Guns({nome,url,dClick,dSecond,locked,detergenteClick,comprar,valor}:Arm
     function unlock(){
         const sucesss:boolean= comprar(valor)
         if(sucesss){
-            setLock(true)
+            setLock(false)
         }
     }
-    if(lock){
+    if(!lock){
         return (
             <div className='Gun'>
                 <div className='info'>
