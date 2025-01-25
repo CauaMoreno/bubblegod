@@ -18,12 +18,14 @@ type Arma = {
 }
 function Game({armas}:{armas:Arma[]}) {
   const [Detergentes, setDetergente] = useState(0)
+  const [iniciado, setIniciado] = useState(false);
  
-  
+
   function detergenteClick(dClick:number){
     setDetergente(Detergentes+dClick)
   }
   function comprar(dNumber:number):boolean{
+    setIniciado(true)
     if(Detergentes-dNumber>0){
       setDetergente(Detergentes-dNumber)
       return true

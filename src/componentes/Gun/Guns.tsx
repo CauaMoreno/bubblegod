@@ -9,10 +9,11 @@ type Arma = {
     detergenteClick:Function,
     comprar:Function,
     valor:number,
-    
+
 }
 function Guns({nome,url,dClick,dSecond,locked,detergenteClick,comprar,valor}:Arma) {
     const [lock,setLock] = useState(locked)
+    const [available,setAvailable] = useState(true)
     function unlock(){
         const sucesss:boolean= comprar(valor)
         if(sucesss){
@@ -26,13 +27,26 @@ function Guns({nome,url,dClick,dSecond,locked,detergenteClick,comprar,valor}:Arm
                     <img src={url}></img>
                     <p>{nome}</p>
                 </div>
-                <div className='status' 
-                    onClick={()=>{                
-                        detergenteClick(dClick)}
-                    }>
-                    <p>{dClick} D/c</p>
-                    <p>{dSecond} D/s</p>
-                </div>
+                {
+                    available?
+                    (<div className='status' 
+                        onClick={()=>{
+                        
+                            setAvailable(false)
+                            setTimeout(()=> {
+                                setAvailable(true)
+                                detergenteClick(dClick)
+                            }, dSecond*100)
+                        }
+                        }>
+                        <p>{dClick} D/c</p>
+                    </div>):
+                    (<div className='status blink'>
+                        <p>{dClick} D/c</p>
+                    </div>)
+                    
+                }
+                
             </div>
         )
     }else{
