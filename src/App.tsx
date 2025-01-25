@@ -18,14 +18,14 @@ function App() {
     {
       url:'https://img.cancaonova.com/cnimages/canais/uploads/sites/6/2014/12/formacao_voce-e-uma-bolha-de-sabao.jpg',
       dClick:10,
-      dSecond:10,
+      dSecond:1,
       nome:'bubblegun',
       locked:true,
     },
     {
       url:'https://img.cancaonova.com/cnimages/canais/uploads/sites/6/2014/12/formacao_voce-e-uma-bolha-de-sabao.jpg',
       dClick:5,
-      dSecond:5,
+      dSecond:1,
       nome:'bubblegun',
       locked:true,
     },
@@ -67,8 +67,14 @@ function App() {
       return () => clearInterval(interval);
   }, [iniciado]);
   function detergenteClick(dClick:number){
-    console.log("aaaaaaaaa")
     setDetergente(Detergentes+dClick)
+  }
+  function comprar(dNumber:number):boolean{
+    if(Detergentes-dNumber>0){
+      setDetergente(Detergentes-dNumber)
+      return true
+    }
+    return false
   }
   return (
     <div className='App'> 
@@ -91,6 +97,7 @@ function App() {
                   nome={arma.nome}
                   locked={arma.locked}
                   detergenteClick={detergenteClick}
+                  comprar={comprar}
                   valor={10}
                   >
 

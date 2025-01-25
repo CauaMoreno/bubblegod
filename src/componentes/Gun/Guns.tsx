@@ -7,10 +7,18 @@ type Arma = {
     dSecond:number,
     locked:boolean,
     detergenteClick:Function,
+    comprar:Function,
     valor:number
 }
-function Guns({nome,url,dClick,dSecond,locked,detergenteClick,valor}:Arma) {
-    if(locked){
+function Guns({nome,url,dClick,dSecond,locked,detergenteClick,comprar,valor}:Arma) {
+    const [lock,setLock] = useState(locked)
+    function unlock(){
+        const sucesss:boolean= comprar(valor)
+        if(sucesss){
+            setLock(true)
+        }
+    }
+    if(lock){
         return (
             <div className='Gun'>
                 <div className='info'>
@@ -33,9 +41,8 @@ function Guns({nome,url,dClick,dSecond,locked,detergenteClick,valor}:Arma) {
                     <img src={url}></img>
                     <p>Blocked</p>
                 </div>
-                <div className='status block' >
+                <div className='status' onClick={unlock} >
                     <p>{valor} detergentes <br/>p/ desbloquear</p>
-                    
                 </div>
             </div>
         )
