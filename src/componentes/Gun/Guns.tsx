@@ -36,7 +36,13 @@ function Guns({nome,url,dClick,dSecond,locked,detergenteClick,comprar,valor, apl
                     (<div className='status'
                         
                         onClick={()=>{
-                            if(tipoUpgrade!="Autoclicker"){
+                            if(aplicadoUpgrade && tipoUpgrade=="Autoclicker"){
+                                window.setInterval(()=>{
+                                    detergenteClick(dClick)
+                                },100)
+                                return
+                            }
+                            
                                 setAvailable(false)
                                 let tempo = dSecond*10
                                 if(tipoUpgrade=='Acelerador' && aplicadoUpgrade){
@@ -50,12 +56,8 @@ function Guns({nome,url,dClick,dSecond,locked,detergenteClick,comprar,valor, apl
                                     }
                                     detergenteClick(detergeIncrease)
                                 }, tempo)
-                            }
-                            if(aplicadoUpgrade && tipoUpgrade=="Autoclicker"){
-                                window.setInterval(()=>{
-                                    detergenteClick(dClick)
-                                },100)
-                            }
+                            
+                           
                         }
                         }>
                         <p>{dClick} D/c</p>

@@ -4,12 +4,7 @@ import Guns from "../../componentes/Gun/Guns"
 import UpgradeContainer from '../../componentes/UpgradeContainer/UpgradeContainer'
 
 
-type Upgrade = {
-  nome:string
-  valor:number
-  aplicado:boolean
-  tipo:"Autoclicker"|"Multiplicador"|"Acelerador"|"Inexistente"
-}
+
 type Arma = {
   nome:string,
   codigo_imagem:string,
@@ -17,15 +12,14 @@ type Arma = {
   valor_click:number,
   block:boolean,
   valor_desbloqueio:number,
-  upgrade:Upgrade,
+
+  valorUpgrade:number
+  adquiridoUpgrade:boolean
+  tipoUpgrade:"Autoclicker"|"Multiplicador"|"Acelerador"|"Inexistente"
 }
-function Game({armas,showLore}:{armas:Arma[],showLore:any}) {
 
-
-
-function Game({armas,setUpgradeVisible}:{armas:Arma[],setUpgradeVisible:any}) {
+function Game({armas,setUpgradeVisible,showLore}:{armas:Arma[],setUpgradeVisible:any,showLore:any}) {
   const [Detergentes, setDetergente] = useState(0)
-  //const [iniciado, setIniciado] = useState(false);
  
   useEffect(()=>{
     showLore()
@@ -35,7 +29,6 @@ function Game({armas,setUpgradeVisible}:{armas:Arma[],setUpgradeVisible:any}) {
   }
   function comprar(dNumber:number):boolean{
 
-    setIniciado(true)
     if(Detergentes-dNumber>0){
       setDetergente(Detergentes-dNumber)
       showLore()
@@ -68,6 +61,10 @@ function Game({armas,setUpgradeVisible}:{armas:Arma[],setUpgradeVisible:any}) {
                     detergenteClick={detergenteClick}
                     comprar={comprar}
                      valor={arma.valor_desbloqueio}
+                     
+                     tipoUpgrade={arma.tipoUpgrade}
+                     valorUpgrade={arma.valorUpgrade}
+                     aplicadoUpgrade={arma.adquiridoUpgrade}
                   >
                   </Guns>
                 )

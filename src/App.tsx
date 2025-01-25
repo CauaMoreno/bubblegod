@@ -8,6 +8,7 @@ import { BrowserRouter, Route, Routes } from 'react-router'
 import { useEffect, useState } from 'react'
 import { getDataFromUser } from './componentes/Api/config'
 import LoreContainer from './componentes/LoreContainer/LoreContainer'
+import UpgradeContainer from './componentes/UpgradeContainer/UpgradeContainer'
 
 const supabaseUrl = 'https://hcsmsnyvmcgkgvnppedi.supabase.co';
 const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imhjc21zbnl2bWNna2d2bnBwZWRpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Mzc3NzAxMjksImV4cCI6MjA1MzM0NjEyOX0.hjWIEc7zSW5xL7X2tHydujCl55yDPWY6aT30hi-80NM'
@@ -50,20 +51,20 @@ type Arma = {
     codigo_imagem:string,
     valor_segundo:number,
     valor_click:number,
-    valor_desbloqueio:number
     block:boolean,
     valor_desbloqueio:number,
-    valorUpdate:number
-    adquiridoUpdate:boolean
-    tipoUpdate:"Autoclicker"|"Multiplicador"|"Acelerador"|"Inexistente"
+    valorUpgrade:number
+    adquiridoUpgrade:boolean
+    tipoUpgrade:"Autoclicker"|"Multiplicador"|"Acelerador"|"Inexistente"
     
   }
 function App() {
     const [session,setSession]= useState<Session>();
-    const [elementos,setElem] = useState<Arma[]>([]);
+    const [armas,setArmas] = useState<Arma[]>([]);
     const [loreIndex,setLoreIndex] = useState(0);
     const [loreVisible,setLoreVisible] = useState(false);
 
+    const [showUpgrades,setShowUpgrade]=useState(false)
     let ggg:Arma[] =[];
     
     
@@ -95,13 +96,14 @@ function App() {
                     <Routes>
                         <Route path="/bubblegod/" element={<Login setSession={setSession} />} /> 
                         
-                        <Route path="/bubblegod/game" element={<Game armas={elementos} showLore={()=>{
+                        <Route path="/bubblegod/game" element={<Game armas={armas} setUpgradeVisible={setShowUpgrade}  showLore={()=>{
                             setLoreVisible(true)
                         }}  />} /> 
 
                         {/* <Route path="/bubblegod/powerup" element={<PowerUps powerups={elementos}  />} />  */}
                     </Routes>
             </BrowserRouter>
+            <UpgradeContainer armas={armas} setArmas={setArmas} visible={showUpgrades} setVisible={setShowUpgrade}></UpgradeContainer>
             <LoreContainer 
                 titulo={Lores.get(loreIndex)?.titulo!}
                 lore={Lores.get(loreIndex)?.lore!}

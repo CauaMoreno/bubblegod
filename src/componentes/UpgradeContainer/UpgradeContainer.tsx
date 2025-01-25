@@ -8,13 +8,10 @@ type Arma = {
     valor_click:number,
     block:boolean,
     valor_desbloqueio:number,
-    valor:number,
-    aplicado:boolean,
-    tipo:"Autoclicker"|"Multiplicador"|"Acelerador"|"Inexistente"
-    valorUpgrade:number,
-    tipoUpgrade:string,
-
+    valorUpgrade:number
     adquiridoUpgrade:boolean
+    tipoUpgrade:"Autoclicker"|"Multiplicador"|"Acelerador"|"Inexistente"
+    
   }
 type UpgradeContainer = {
     visible:boolean
