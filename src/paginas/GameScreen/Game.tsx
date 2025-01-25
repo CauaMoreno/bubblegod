@@ -14,43 +14,18 @@ type Arma = {
   valor_segundo:number,
   valor_click:number,
   block:boolean,
+  valor_desbloqueio:number
 }
 function Game({armas}:{armas:Arma[]}) {
   const [Detergentes, setDetergente] = useState(0)
-  const [iniciado, setIniciado] = useState(true);
-  function detergentesSegundo():number{
-    const armasDesbloqueadas = armas.filter(
-      (arma:Arma)=>{
-        if(arma.block){
-          return true
-        }else{
-          return false
-        }
-      }
-    )
-    let detSec = 0;
-    console.log(armas)
+  const [iniciado, setIniciado] = useState(false);
+ 
 
-    armasDesbloqueadas.forEach((arma:Arma) => detSec+=arma.valor_click);
-    return detSec
-  }
-  useEffect(() => {
-      let interval:any;
-      if (iniciado) {
-          interval = setInterval(() => {
-              const det =detergentesSegundo()/100
-              setDetergente(Detergentes => Detergentes + det);
-              
-          }, 10);
-      } else {
-          clearInterval(interval);
-      }
-      return () => clearInterval(interval);
-  }, [iniciado,Detergentes]);
   function detergenteClick(dClick:number){
     setDetergente(Detergentes+dClick)
   }
   function comprar(dNumber:number):boolean{
+    setIniciado(true)
     if(Detergentes-dNumber>0){
       setDetergente(Detergentes-dNumber)
       return true
@@ -63,7 +38,7 @@ function Game({armas}:{armas:Arma[]}) {
       <header>
         <span>Bubble Gun</span>
         <div className='detergentes'>
-          <img></img>
+          <img src='https://hcsmsnyvmcgkgvnppedi.supabase.co/storage/v1/object/sign/assets/guns/New%20Piskel%20(6).png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJhc3NldHMvZ3Vucy9OZXcgUGlza2VsICg2KS5wbmciLCJpYXQiOjE3Mzc4MDMyNDUsImV4cCI6MTczODQwODA0NX0.zhs2imk2leXGe2-VUje0I8ynhIrScDduPhVU30RVJK4&t=2025-01-25T11%3A07%3A25.901Z'></img>
           <span>{Detergentes.toFixed(1)}</span>
         </div>
       </header>
@@ -81,11 +56,12 @@ function Game({armas}:{armas:Arma[]}) {
                     locked={arma.block}
                     detergenteClick={detergenteClick}
                     comprar={comprar}
-                    valor={10}
+                    valor={arma.valor_desbloqueio}
                   >
                   </Guns>
                 )
-              }
+              },
+              <button>UPGRADES</button>
             )
           } 
       </div>

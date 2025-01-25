@@ -6,11 +6,11 @@
     border-radius: 10px;
     color: white;
     width: 80%;
-    height: 100px;
-    padding-left: 10px;
-    padding-right: 10px;
-
+    height: auto;
+    padding: 10px;
+    max-width: 500px;
     background-color: #204056;
+    flex-wrap: wrap;
     img{
         width: 80px;
         height: 80px;
@@ -47,3 +47,24 @@
 .block{
     filter: grayscale(1) opacity(0.8);
 }
+
+.blink {
+    background-color: black;
+
+    filter: opacity(0.5);
+
+}
+.blink:active {
+    background-color: black !important;
+}
+@keyframes blink {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+    }
+} 
