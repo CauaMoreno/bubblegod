@@ -10,41 +10,18 @@ const supabase = createClient(supabaseUrl, supabaseKey)
 
 type Arma = {
   nome:string,
-  url:string,
-  dClick:number,
-  dSecond:number,
-  locked:boolean
+  codigo_imagem:string,
+  valor_segundo:number,
+  valor_click:number,
+  block:boolean,
 }
-function Game() {
+function Game({armas}:{armas:Arma[]}) {
   const [Detergentes, setDetergente] = useState(0)
   const [iniciado, setIniciado] = useState(true);
-  const [session, setSession] = useState<Session | null>(null)
-  const [data,setData]= useState()
-  async function getDataFromUser() {
-    const { data, error } = await supabase.from('user').select().eq('uuid', session?.user.id).single()
-    console.log(data)
-    if (error) {
-      console.log(error);
-    } else {
-      setData(data)
-    }
-  }
-  async function addDataToUser() {
-    const { data, error } = await supabase.from('user').insert([
-      { uuid:session?.user.id, detergente: 15 }
-    ]);
-    if (error) {
-      console.log(error);
-    } else {
-      console.log(data);
-    }
-  }
-  const [armas, setArmas] = useState<Arma[]>([])
-  
   function detergentesSegundo():number{
     const armasDesbloqueadas = armas.filter(
       (arma:Arma)=>{
-        if(arma.locked){
+        if(arma.block){
           return true
         }else{
           return false
@@ -52,23 +29,24 @@ function Game() {
       }
     )
     let detSec = 0;
-    armasDesbloqueadas.forEach((arma:Arma) => detSec+=arma.dSecond);
-    console.log(detSec)
+    console.log(armas)
+
+    armasDesbloqueadas.forEach((arma:Arma) => detSec+=arma.valor_click);
     return detSec
   }
-  
   useEffect(() => {
       let interval:any;
       if (iniciado) {
           interval = setInterval(() => {
               const det =detergentesSegundo()/100
               setDetergente(Detergentes => Detergentes + det);
+              
           }, 10);
       } else {
           clearInterval(interval);
       }
       return () => clearInterval(interval);
-  }, [iniciado]);
+  }, [iniciado,Detergentes]);
   function detergenteClick(dClick:number){
     setDetergente(Detergentes+dClick)
   }
@@ -79,6 +57,7 @@ function Game() {
     }
     return false
   }
+
   return (
     <div className='GameScreen'> 
       <header>
@@ -90,20 +69,20 @@ function Game() {
       </header>
       <div className='ArmasContainer'>
           {
+          
             armas.map(
               (arma:Arma)=>{
                 return (
                   <Guns
-                  url={arma.url}
-                  dClick={arma.dClick}
-                  dSecond={arma.dSecond}
-                  nome={arma.nome}
-                  locked={arma.locked}
-                  detergenteClick={detergenteClick}
-                  comprar={comprar}
-                  valor={10}
+                    url={arma.codigo_imagem}
+                    dClick={arma.valor_click}
+                    dSecond={arma.valor_segundo}
+                    nome={arma.nome}
+                    locked={arma.block}
+                    detergenteClick={detergenteClick}
+                    comprar={comprar}
+                    valor={10}
                   >
-
                   </Guns>
                 )
               }
