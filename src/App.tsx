@@ -3,6 +3,7 @@ import { createClient, Session } from '@supabase/supabase-js'
 import './App.css'
 import Game from "./paginas/GameScreen/Game"
 import Login from "./paginas//LoginScreen/LoginScreen"
+import Upgrades from './paginas/Upgrades/Upgrades'
 
 import { BrowserRouter, Route, Routes } from 'react-router'
 import { useEffect, useState } from 'react'
@@ -58,6 +59,8 @@ function App() {
                     <Route path="/bubblegod/" element={<Login setSession={setSession} />} /> 
                     
                      <Route path="/bubblegod/game" element={<Game armas={elementos}  />} /> 
+
+                     <Route path="/bubblegod/powerup" element={<PowerUps powerups={elementos}  />} /> 
                 </Routes>
         </BrowserRouter>
        

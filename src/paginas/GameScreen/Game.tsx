@@ -60,7 +60,8 @@ function Game({armas}:{armas:Arma[]}) {
                   >
                   </Guns>
                 )
-              }
+              },
+              <button>UPGRADES</button>
             )
           } 
       </div>

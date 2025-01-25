@@ -6,11 +6,11 @@
     border-radius: 10px;
     color: white;
     width: 80%;
-    height: 100px;
-    padding-left: 10px;
-    padding-right: 10px;
+    height: auto;
+    padding: 10px;
     max-width: 500px;
     background-color: #204056;
+    flex-wrap: wrap;
     img{
         width: 80px;
         height: 80px;
