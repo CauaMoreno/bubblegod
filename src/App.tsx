@@ -39,7 +39,9 @@ function App() {
         if (error) {
           console.log(error);
         } else {
-            const arrn = data.slice()
+            
+
+            const arrn = data.sort((a:any, b:any) => a.id - b.id).slice()
             setElem(arrn)
             ggg = data
         }

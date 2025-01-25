@@ -8,7 +8,8 @@ type Arma = {
     locked:boolean,
     detergenteClick:Function,
     comprar:Function,
-    valor:number
+    valor:number,
+    
 }
 function Guns({nome,url,dClick,dSecond,locked,detergenteClick,comprar,valor}:Arma) {
     const [lock,setLock] = useState(locked)

@@ -19,7 +19,7 @@
             align-items: center;
             flex-direction: column;
             gap: 5px;
-    
+            
             button{
                 border: 0;
                 border-radius: 0;
@@ -30,6 +30,11 @@
                 align-items: center;
                 background-color: #204056;
                 border-radius: 5px;
+            }
+            input{
+                height: 30px;
+                border: 2px solid #204056;
+                padding: 5px;
             }
             span{
                 color: #204056;

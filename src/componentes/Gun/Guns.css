@@ -9,7 +9,7 @@
     height: 100px;
     padding-left: 10px;
     padding-right: 10px;
-
+    max-width: 500px;
     background-color: #204056;
     img{
         width: 80px;
