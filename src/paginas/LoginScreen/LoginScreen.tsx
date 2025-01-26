@@ -35,8 +35,22 @@ export default function Login({setSession,session}:{setSession:Function,session:
       password: password,
     })
     setSession(session)
-    if (error) console.log(error.message)
-    if (!session) console.log('Please check your inbox for email verification!')
+    if (error){
+      switch(error.code) {
+        case "weak_password":
+          window.alert("Senha deve possuir mais de 6 caracteres")
+          return;
+        case "validation_failed":
+          window.alert("Email inválido")
+          return;
+        case "email_address_invalid":
+          window.alert("Email inválido")
+          return;
+      }
+    }
+    if (!session) {
+      window.alert("Confirme deu cadastro pelo link enviado via email")
+    }
   }
   async function signInWithEmail() {
     const {data: { session }, error } = await supabase.auth.signInWithPassword({
@@ -44,7 +58,10 @@ export default function Login({setSession,session}:{setSession:Function,session:
       password: password,
     })
     if (error) {
-      console.log(error.message)
+      switch(error.code) {
+        case "invalid_credentials":
+          window.alert("Email e/ou senha inválido")
+      }
       return
     }else{
       if(session!=null){
