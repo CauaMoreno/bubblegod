@@ -65,6 +65,7 @@ function App() {
             console.log(userResponse.error);
         } else {
             setDetergente(userResponse.data.detergente)
+            setLoreIndex(userResponse.data.current_lore)
         }
         
         const gunsResponse = await supabase.from('gun').select().eq('autor', session?.user.id)
@@ -79,9 +80,8 @@ function App() {
   
    
     function salvar() {
-        updateProfile({detergente:Detergentes,session:session!})
+        updateProfile({detergente:Detergentes,indexLore:loreIndex,session:session!})
         console.log(armas)
-
     }
     return(
         <div>
