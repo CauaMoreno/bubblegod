@@ -48,9 +48,8 @@ export default function Login({setSession,session}:{setSession:Function,session:
       return
     }else{
       if(session!=null){
-        await firstLogin(session)
         setSession(session)
-        navigate("/bubblegod/game");
+        navigate("/bubbleguns/game");
       }
       
     }
@@ -74,8 +73,10 @@ export default function Login({setSession,session}:{setSession:Function,session:
         </div>
       )
     }else{
+      firstLogin(session).then(() =>
+        navigate("/bubbleguns/game")
+      )
       console.log(session)
-      navigate("/bubblegod/game");
     }
    
   

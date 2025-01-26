@@ -17,8 +17,8 @@ const supabase = createClient(supabaseUrl, supabaseKey)
 
 const Lores= new Map<number,Lore>([
     [0,{
-        titulo:"Bubble Gun",
-        lore:"A guerra entre as nações das Agulhas só se intensifica, e a situação fica cada vez mais crítica. Somos, uma corporação bélica, que se limita a vender arcos de bolha, a única arma realmente agressiva do nosso povo.",
+        titulo:"Arco de Bolha",
+        lore:"A guerra com a nação das Agulhas só se intensifica, a situação fica cada vez mais crítica. Nesse contexto nossa corporação se torna de extrema importancia. Como fornecedores de armas, nosso único objetivo é fortalecer nosso Reino.",
     }],
     [1,{
         titulo:"Arma Bolhuda",
@@ -89,12 +89,12 @@ function App() {
         <div>
             <BrowserRouter>
                     <Routes>
-                        <Route path="/bubblegod/" element={<Login 
+                        <Route path="/bubbleguns/" element={<Login 
                         setSession={setSession} 
                         session={session}
                         />} /> 
                         
-                        <Route path="/bubblegod/game" element={
+                        <Route path="/bubbleguns/game" element={
                             <Game 
                                 salvarjogo={salvar} 
                                 armas={armas} 
