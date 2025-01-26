@@ -1,3 +1,4 @@
+import { Session } from "@supabase/supabase-js"
 export type Arma = {
     nome:string,
     codigo_imagem:string,

@@ -113,7 +113,7 @@ function App() {
                 setDetergente={setDetergente}
                 detergente={Detergentes}
                 setVisible={setShowUpgrade}
-                session={session}>
+                session={session!}>
             </UpgradeContainer>
             <LoreContainer 
                 titulo={Lores.get(loreIndex)?.titulo!}

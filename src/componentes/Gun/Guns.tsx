@@ -1,10 +1,10 @@
 import { useState } from 'react'
 import './Guns.css'
 import { updateGun } from '../Api/config'
-import {Arma, ArmaProp} from '../../tipos'
+import {Arma} from '../../tipos'
 import { Session } from '@supabase/supabase-js'
 
-function Guns({arma,detergenteClick,comprar,detergente,session}:{arma:Arma,detergenteClick:Function,comprar:Function,
+function Guns({arma,detergenteClick,comprar,session}:{arma:Arma,detergenteClick:Function,comprar:Function,
     detergente:number,session:Session}) {
     const [lock,setLock] = useState(arma.block)
     const [available,setAvailable] = useState(true)

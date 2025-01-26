@@ -1,7 +1,6 @@
-import { createClient, Session } from '@supabase/supabase-js'
 
 import './LoreContainer.css'
-import {Lore, LoreProps} from '../../tipos'
+import { LoreProps} from '../../tipos'
 
 
 

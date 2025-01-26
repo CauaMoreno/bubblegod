@@ -1,6 +1,4 @@
-import { data } from 'react-router'
 import './UpgradeContainer.css'
-import { useEffect, useState } from 'react'
 import {Arma, UpgradeContainerProps} from '../../tipos'
 import { updateGun } from '../Api/config';
 
