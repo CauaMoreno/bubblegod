@@ -1,67 +1,77 @@
 import { useState } from 'react'
 import './Guns.css'
+import { updateGun } from '../Api/config'
+import {Arma, ArmaProp} from '../../tipos'
+import { Session } from '@supabase/supabase-js'
 
-type Arma = {
-    nome:string,
-    url:string,
-    dClick:number,
-    dSecond:number,
-    locked:boolean,
-    detergenteClick:Function,
-    comprar:Function,
-    valor:number,
-    
-    valorUpgrade:number
-    aplicadoUpgrade:boolean
-    tipoUpgrade:"Autoclicker"|"Multiplicador"|"Acelerador"|"Inexistente"
-}
-function Guns({nome,url,dClick,dSecond,locked,detergenteClick,comprar,valor, aplicadoUpgrade, tipoUpgrade}:Arma) {
-    const [lock,setLock] = useState(locked)
+function Guns({arma,detergenteClick,comprar,detergente,session}:{arma:Arma,detergenteClick:Function,comprar:Function,
+    detergente:number,session:Session}) {
+    const [lock,setLock] = useState(arma.block)
     const [available,setAvailable] = useState(true)
     function unlock(){
-        const sucesss:boolean= comprar(valor)
+        const sucesss:boolean= comprar(arma.valor_desbloqueio)
         if(sucesss){
             setLock(false)
+            try {
+                 updateGun(
+                    {
+                        nome:arma.nome,
+                        block:false,
+                        session:session!,
+                        valor_segundo:arma.valor_segundo,
+                        valor_click:arma.valor_click,
+                        codigo_imagem:arma.codigo_imagem,
+                        valor_desbloqueio:arma.valor_desbloqueio,
+                        id:arma.id,
+                        tipoUpgrade:arma.tipoUpgrade,
+                        valorUpgrade:arma.valorUpgrade,
+                        adquiridoUpgrade:arma.adquiridoUpgrade,
+                    })
+            } catch (error) {
+                console.log(error)
+            }
         }
     }
     if(!lock){
         return (
             <div className='Gun'>
                 <div className='info'>
-                    <img src={url}></img>
-                    <p>{nome}</p>
+                    <img src={arma.codigo_imagem}></img>
+                    <p>{arma.nome}</p>
                 </div>
                 {
                     available?
                     (<div className='status'
                         
                         onClick={()=>{
-                            if(tipoUpgrade!="Autoclicker"){
-                                setAvailable(false)
-                                let tempo = dSecond*10
-                                if(tipoUpgrade=='Acelerador' && aplicadoUpgrade){
-                                    tempo=dSecond*10*0.6
+                            if(arma.adquiridoUpgrade && arma.tipoUpgrade=="Autoclicker"){
+                                return
+                            }
+                            setAvailable(false)
+                            let tempo = arma.valor_segundo*120
+                            console.log(tempo)
+
+                            if(arma.tipoUpgrade=='Acelerador' && arma.tipoUpgrade){
+                                tempo=tempo*0.75
+                                console.log(tempo)
+                            }
+                            setTimeout(()=> {
+                                let detergeIncrease = arma.valor_click
+                                setAvailable(true)
+                                if(arma.tipoUpgrade=="Multiplicador" && arma.adquiridoUpgrade){
+                                    detergeIncrease =1.5*detergeIncrease
                                 }
-                                setTimeout(()=> {
-                                    let detergeIncrease = dClick
-                                    setAvailable(true)
-                                    if(tipoUpgrade=="Multiplicador" && aplicadoUpgrade){
-                                        detergeIncrease*=1.5
-                                    }
-                                    detergenteClick(detergeIncrease)
-                                }, tempo)
-                            }
-                            if(aplicadoUpgrade && tipoUpgrade=="Autoclicker"){
-                                window.setInterval(()=>{
-                                    detergenteClick(dClick)
-                                },100)
-                            }
+                                detergenteClick(detergeIncrease);
+
+                            }, tempo)
+                            
+                           
                         }
                         }>
-                        <p>{dClick} D/c</p>
+                        <p>{arma.valor_click} D/c</p>
                     </div>):
                     (<div className='status blink'>
-                        <p>{dClick} D/c</p>
+                        <p>{arma.valor_click} D/c</p>
                     </div>)
                     
                 }
@@ -72,11 +82,11 @@ function Guns({nome,url,dClick,dSecond,locked,detergenteClick,comprar,valor, apl
         return(
             <div className='Gun block'>
                 <div className='info'>
-                    <img src={url}></img>
+                    <img src={arma.codigo_imagem}></img>
                     <p>Blocked</p>
                 </div>
                 <div className='status' onClick={unlock} >
-                    <p>{valor} detergentes <br/>p/ desbloquear</p>
+                    <p>{arma.valor_desbloqueio} detergentes <br/>p/ desbloquear</p>
                 </div>
             </div>
         )

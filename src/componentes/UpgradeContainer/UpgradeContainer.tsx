@@ -1,55 +1,72 @@
 import { data } from 'react-router'
 import './UpgradeContainer.css'
+import { useEffect, useState } from 'react'
+import {Arma, UpgradeContainerProps} from '../../tipos'
+import { updateGun } from '../Api/config';
 
-type Arma = {
-    nome:string,
-    codigo_imagem:string,
-    valor_segundo:number,
-    valor_click:number,
-    block:boolean,
-    valor_desbloqueio:number,
-    valor:number,
-    aplicado:boolean,
-    tipo:"Autoclicker"|"Multiplicador"|"Acelerador"|"Inexistente"
-    valorUpgrade:number,
-    tipoUpgrade:string,
-
-    adquiridoUpgrade:boolean
-  }
-type UpgradeContainer = {
-    visible:boolean
-    setVisible:any
-    armas:Arma[],
-    setArmas:any
-}
-
-
-
-function UpgradeContainer({visible, setVisible, armas,setArmas}: UpgradeContainer){
-    console.log("nicolas cage",armas)
-    
+function UpgradeContainer({visible, setVisible, armas,setArmas,setDetergente,detergente,session}: UpgradeContainerProps){
+   
+    function handleClick(arma:Arma){
+        const valorUpgrade = arma.valorUpgrade
+        console.log(arma)
+        if(detergente-valorUpgrade>=0 && !arma.adquiridoUpgrade && !arma.block){
+            setDetergente(detergente-valorUpgrade)
+            const index = armas.indexOf(arma)
+            const arrN = armas.slice()
+            arrN[index].adquiridoUpgrade=true
+            setArmas(arrN)
+            try {
+                updateGun(
+                   {
+                       nome:arma.nome,
+                       block:false,
+                       session:session!,
+                       valor_segundo:arma.valor_segundo,
+                       valor_click:arma.valor_click,
+                       codigo_imagem:arma.codigo_imagem,
+                       valor_desbloqueio:arma.valor_desbloqueio,
+                       id:arma.id,
+                       tipoUpgrade:arma.tipoUpgrade,
+                       valorUpgrade:arma.valorUpgrade,
+                       adquiridoUpgrade:arma.adquiridoUpgrade,
+                   })
+           } catch (error) {
+               console.log(error)
+           }
+            
+            window.alert("comprado")
+          
+        }
+        
+    }
     if(visible){
         return(
             <div className="UpgradeContainer">
-                <h1>UPGRADES</h1>
-                {
-                    armas.map(arma => (
-                        <div key={arma.nome} className='upgradeData'>
-                            
-                            <div className='data'>
-                                <p className='name'>{arma.nome}</p>
-                                <p className='type'>{arma.tipoUpgrade}</p>
-                            </div>
-                            <p className='button'>{arma.valorUpgrade}</p>
+                <div className='fitCont'>
+                    {
+                        armas.map(arma => (
+                            !arma.adquiridoUpgrade?
+                            (<div key={arma.nome} className='upgradeData'>
+                                <div className='data' >
+                                    <p className='name'>{arma.nome}</p>
+                                    <p className='type'>{arma.tipoUpgrade}</p>
+                                </div>
+                                <p className='button' onClick={()=>handleClick(arma)}>{arma.valorUpgrade}</p>
+                            </div>):
+                            (<div key={arma.nome} className='upgradeData block'>
+                                <div className='data' >
+                                    <p className='name'>{arma.nome}</p>
+                                    <p className='type'>{arma.tipoUpgrade}</p>
+                                </div>
+                                <p className='button' >{arma.valorUpgrade}</p>
+                            </div>)
 
-                            
-                        </div>
-                    ))
-                
-                }
-                <button className='upSair' onClick={()=>{setVisible(false)}}>
-                    Sair
-                </button>
+                        ))
+                    }
+                    <button className='upSair' onClick={()=>{setVisible(false)}}>
+                        Sair
+                    </button>
+                </div>
             </div>
         )
     }

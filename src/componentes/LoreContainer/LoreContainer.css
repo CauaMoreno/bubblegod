@@ -1,0 +1,37 @@
+.LoreContainer{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    width: 80%;
+    max-width: 380px;
+   height: 350px;
+   padding-bottom: 30px;
+   padding-top: 30px;
+   border: 6px solid #204056;
+   box-shadow: 5px 5px 5px rgba(220, 220, 220, 0.178);
+   background-color: #a6b5be;
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   flex-direction: column;
+   color: black;
+    border-radius: 5px;
+   button{
+    width: 120px;
+    height: auto;
+    background-color: #73777993;
+    margin: 0%;
+
+   }
+   p{
+    width: 80%;
+    height: 60%;
+    text-align: left;
+   }
+   h1{
+    margin: 0%;
+    padding: 0%;
+    font-size: 30px;
+   }
+}
