@@ -26,7 +26,7 @@ export async function firstLogin(session:Session) {
     if (user.data!=null) {
          return
     } else {
-        updateProfile({detergente:0,session:session}).then(
+        updateProfile({detergente:0,indexLore:0,session:session}).then(
           async ()=>{
             const guns = await supabase.from('gun').select().eq('autor', session?.user.id)
             if (guns.data?.length!=0) {
@@ -62,9 +62,11 @@ export async function firstLogin(session:Session) {
 }
 export async function updateProfile({
     detergente,
+    indexLore,
     session
   }: {
     detergente:number
+    indexLore:number
     session:Session
   }) {
     try {
@@ -73,6 +75,7 @@ export async function updateProfile({
       const updates = {
         uuid: session?.user.id,
         detergente:detergente,
+        current_lore:indexLore,
         created_at: new Date(),
       }
       const { error } = await supabase.from('user').upsert(updates)
