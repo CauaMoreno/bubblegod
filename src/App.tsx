@@ -84,28 +84,26 @@ function App() {
     }
     return(
         <div>
-            <BrowserRouter>
-                    <Routes>
-                        <Route path="/bubbleguns/" element={<Login 
-                        setSession={setSession} 
+            <Routes>
+                <Route path="/bubbleguns/" element={<Login 
+                setSession={setSession} 
+                session={session}
+                />} /> 
+                
+                <Route path="/bubbleguns/game" element={
+                    <Game 
+                        salvarjogo={salvar} 
+                        armas={armas} 
+                        setDetergente={setDetergente} 
+                        detergente={Detergentes}
+                        setUpgradeVisible={setShowUpgrade}  
                         session={session}
-                        />} /> 
-                        
-                        <Route path="/bubbleguns/game" element={
-                            <Game 
-                                salvarjogo={salvar} 
-                                armas={armas} 
-                                setDetergente={setDetergente} 
-                                detergente={Detergentes}
-                                setUpgradeVisible={setShowUpgrade}  
-                                session={session}
-                                setSession={setSession}
-                                showLore={()=>{
-                                    setLoreVisible(true)
-                                }}  />} /> 
-
-                    </Routes>
-            </BrowserRouter>
+                        setSession={setSession}
+                        showLore={()=>{
+                            setLoreVisible(true)
+                        }}  />} /> 
+                
+            </Routes>
             <UpgradeContainer 
                 armas={armas} 
                 setArmas={setArmas} 
