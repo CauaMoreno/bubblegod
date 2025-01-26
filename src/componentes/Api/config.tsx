@@ -16,7 +16,8 @@ export async function getDataFromUser(session:Session) {
 }
 
 export async function signOut() {
-  const { error } = await supabase.auth.signOut()
+  await supabase.auth.signOut()
+
 }
 
 export async function firstLogin(session:Session) {

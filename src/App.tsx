@@ -1,4 +1,4 @@
-import { createClient, PostgrestError, Session } from '@supabase/supabase-js'
+import { createClient,  Session } from '@supabase/supabase-js'
 
 import './App.css'
 import Game from "./paginas/GameScreen/Game"
@@ -6,7 +6,7 @@ import Login from "./paginas//LoginScreen/LoginScreen"
 
 import { BrowserRouter, Route, Routes } from 'react-router'
 import { useEffect, useState } from 'react'
-import { getDataFromUser, insereGun, updateGun, updateProfile } from './componentes/Api/config'
+import {    updateProfile } from './componentes/Api/config'
 import LoreContainer from './componentes/LoreContainer/LoreContainer'
 import UpgradeContainer from './componentes/UpgradeContainer/UpgradeContainer'
 import {Arma, Lore} from './tipos'
@@ -52,7 +52,6 @@ function App() {
     const [Detergentes, setDetergente] = useState(0)
 
     const [showUpgrades,setShowUpgrade]=useState(false)
-    let ggg:Arma[] =[];
     
     useEffect(() => {
         if (session){
@@ -72,9 +71,7 @@ function App() {
             console.log(gunsResponse.error);
         } else {
             const arrn = gunsResponse.data.sort((a:any, b:any) => a.id - b.id).slice()
-            setArmas(arrn)
-            console.log(gunsResponse.data)
-            ggg = gunsResponse.data
+            setArmas(arrn)          
         }
     
     }

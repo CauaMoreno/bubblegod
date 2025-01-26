@@ -1,12 +1,10 @@
-import { useState ,useEffect} from 'react'
+import { useEffect} from 'react'
 import './Game.css'
 import Guns from "../../componentes/Gun/Guns"
-import UpgradeContainer from '../../componentes/UpgradeContainer/UpgradeContainer'
-import { signOut, updateProfile } from '../../componentes/Api/config'
+import { signOut } from '../../componentes/Api/config'
 import {Arma} from '../../tipos'
 import { Session } from '@supabase/supabase-js'
 import { useNavigate } from 'react-router-dom'
-import { supabase } from '@supabase/auth-ui-shared'
 
 let iniciado =false
 
