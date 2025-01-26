@@ -49,7 +49,7 @@ function Game({armas,setUpgradeVisible,showLore,detergente,setDetergente,session
     return (
       <div className='GameScreen'> 
         <header>
-          <span>Bubble Gun</span>
+          <span>Bubble Guns</span>
           <div className='detergentes'>
             <img src='https://hcsmsnyvmcgkgvnppedi.supabase.co/storage/v1/object/sign/assets/guns/New%20Piskel%20(6).png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJhc3NldHMvZ3Vucy9OZXcgUGlza2VsICg2KS5wbmciLCJpYXQiOjE3Mzc4MDMyNDUsImV4cCI6MTczODQwODA0NX0.zhs2imk2leXGe2-VUje0I8ynhIrScDduPhVU30RVJK4&t=2025-01-25T11%3A07%3A25.901Z'></img>
             <span>{detergente.toFixed(1)}</span>
@@ -60,7 +60,7 @@ function Game({armas,setUpgradeVisible,showLore,detergente,setDetergente,session
             salvarjogo()
             signOut()
             setSession(undefined)
-            navigate('/bubblegod')
+            navigate('/bubbleguns')
           }}>
             sair
           </button>
@@ -98,7 +98,7 @@ function Game({armas,setUpgradeVisible,showLore,detergente,setDetergente,session
       </div>
       )
   }else{
-    navigate('/bubblegod')
+    navigate('/bubbleguns')
   }
   
 }
