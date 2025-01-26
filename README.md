@@ -1,50 +1,32 @@
-# React + TypeScript + Vite
+# Bubble Guns
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Participants:
+[Cauã Moreno](https://github.com/CauaMoreno)
 
-Currently, two official plugins are available:
+[Elizabeth Fernandes de Azevedo](https://github.com/Admirablw) 
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+[Estêvão Barbosa Fiorilo da Rocha](https://github.com/tetenc555)
 
-## Expanding the ESLint configuration
+[Miguel Dias de Abreu](https://github.com/Miguel-Dias-112)
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+[Roz Oliveira Costa](https://www.instagram.com/arrozeart/)
 
-- Configure the top-level `parserOptions` property like this:
+[João Pedro Ferreira Srbek](https://github.com/Jyrou)
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+[João Lucas Silva Machado](https://github.com/WasteIy)
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+## About the game:
+This game was made at the Universidade Federal de Juiz de Fora (UFJF) headquarters for the Global Game Jam 2025. It consists of a collection of 3 games, which are linked in the historical context of the bubble war. The main game (from this repository) was programmed in Godot during the period from the 24th to the 26th!
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+
+## Diversifiers we achieved:
+- Sharing is caring -> Check the repositories!
+- Anthology -> Check the 3 games historys!
+- Documentary -> Check our development team Instagram [@capivaras_dev](https://www.instagram.com/capivaras_dev/)
+
+
+## Repositores of the others games to achieve the Anthology diversifier:
+- [Bubble Mayhem](https://github.com/tetenc555/GGJ25_UFJF/)
+- [Niddle Army Trainer](https://github.com/CauaMoreno/NeedleArmyTrainer)
+
