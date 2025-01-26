@@ -4,7 +4,7 @@ import './App.css'
 import Game from "./paginas/GameScreen/Game"
 import Login from "./paginas//LoginScreen/LoginScreen"
 
-import { BrowserRouter, Route, Routes } from 'react-router'
+import {  Route, Routes } from 'react-router'
 import { useEffect, useState } from 'react'
 import {    updateProfile } from './componentes/Api/config'
 import LoreContainer from './componentes/LoreContainer/LoreContainer'
