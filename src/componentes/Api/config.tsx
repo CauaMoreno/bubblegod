@@ -19,11 +19,7 @@ export async function signOut() {
 }export async function firstLogin(session:Session) {
     const user= await supabase.from('user').select().eq('uuid', session?.user.id).single()
     console.log(user.data)
-    if (user.data!=null) {
-        return
-    } else {
-        updateProfile({detergente:0,session:session})
-    }
+   
     const guns = await supabase.from('gun').select().eq('autor', session?.user.id)
     if (guns.data?.length!=0) {
         return

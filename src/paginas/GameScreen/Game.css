@@ -12,6 +12,7 @@
       height: 60px;
       margin-bottom: 30px;
       background-color: #204056;
+      border-bottom: 5px solid black;
       color: #ffffff;
       display: flex;
       justify-content: space-between;
@@ -19,7 +20,19 @@
       padding: 0%;
       span{
         margin-left: 20px;
-      }
+        font-size: 30px;
+        
+     
+    }
+    button{
+      background-color: #c2d6e4;
+      height: 80%;
+      margin: 0%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-right: 15px;
+    }
       .detergentes{
           display: flex;
           justify-content: center;
@@ -60,6 +73,8 @@
     }
     .upButton{
       background-color: #204056;
-      
+      width: 80%;
+      max-width: 500px;
+      height: 60px;
     }
   }

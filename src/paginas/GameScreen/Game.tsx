@@ -62,7 +62,7 @@ function Game({armas,setUpgradeVisible,showLore,detergente,setDetergente,session
             setSession(undefined)
             navigate('/bubblegod')
           }}>
-            sair
+            Salvar <br></br> e sair
           </button>
         </header>
         <div className='ArmasContainer'>
@@ -86,12 +86,10 @@ function Game({armas,setUpgradeVisible,showLore,detergente,setDetergente,session
                 },
               )
             } 
-            <div className='options'>
-            <button className="upButton" onClick={ () => {
-              setUpgradeVisible(true)
-            } }>UPGRADES</button>
+             <button className="upButton" onClick={ () => {
+                setUpgradeVisible(true)
+              } }>UPGRADES</button>
              
-            </div>
            
         </div>
         
