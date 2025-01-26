@@ -28,5 +28,5 @@ This game was made at the Universidade Federal de Juiz de Fora (UFJF) headquarte
 
 ## Repositores of the others games to achieve the Anthology diversifier:
 - [Bubble Mayhem](https://github.com/tetenc555/GGJ25_UFJF/)
-- [Niddle Army Trainer](https://github.com/CauaMoreno/NeedleArmyTrainer)
+- [Needle Army Trainer](https://github.com/CauaMoreno/NeedleArmyTrainer)
 
