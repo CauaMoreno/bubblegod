@@ -1,15 +1,11 @@
 import { createClient, Session } from '@supabase/supabase-js'
 
 import './LoreContainer.css'
+import {Lore, LoreProps} from '../../tipos'
 
 
-type Lore = {
-    titulo:string,
-    lore:string,
-    visible:boolean,
-    increaseIndex:any
-  }
-function LoreContainer({titulo,lore,visible,increaseIndex}:Lore) {
+
+function LoreContainer({titulo,lore,visible,increaseIndex}:LoreProps) {
    
     if(visible){
         return(

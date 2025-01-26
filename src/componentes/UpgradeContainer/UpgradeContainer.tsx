@@ -1,46 +1,11 @@
 import { data } from 'react-router'
 import './UpgradeContainer.css'
 import { useEffect, useState } from 'react'
+import {Arma, UpgradeContainerProps} from '../../tipos'
+import { updateGun } from '../Api/config';
 
-type Arma = {
-    nome:string,
-    codigo_imagem:string,
-    valor_segundo:number,
-    valor_click:number,
-    block:boolean,
-    valor_desbloqueio:number,
-    valorUpgrade:number
-    adquiridoUpgrade:boolean
-    tipoUpgrade:"Autoclicker"|"Multiplicador"|"Acelerador"|"Inexistente"
-    
-  }
-type UpgradeContainer = {
-    visible:boolean
-    setVisible:any
-    armas:Arma[],
-    setArmas:any,
-    detergente:number,
-    setDetergente:any
-}
-
-
-
-function UpgradeContainer({visible, setVisible, armas,setArmas,setDetergente,detergente}: UpgradeContainer){
-    const [iniciado, setIniciado] = useState(false);
-    useEffect(() => {
-        let interval:any;
-
-        if (iniciado) {
-            interval = setInterval(() => {
-                setDetergente((detergente: number) => detergente + 1);
-            }, 200);
-        } else {
-            clearInterval(interval);
-        }
-
-        return () => clearInterval(interval);
-    }, [iniciado]);
-
+function UpgradeContainer({visible, setVisible, armas,setArmas,setDetergente,detergente,session}: UpgradeContainerProps){
+   
     function handleClick(arma:Arma){
         const valorUpgrade = arma.valorUpgrade
         console.log(arma)
@@ -50,10 +15,27 @@ function UpgradeContainer({visible, setVisible, armas,setArmas,setDetergente,det
             const arrN = armas.slice()
             arrN[index].adquiridoUpgrade=true
             setArmas(arrN)
+            try {
+                updateGun(
+                   {
+                       nome:arma.nome,
+                       block:false,
+                       session:session!,
+                       valor_segundo:arma.valor_segundo,
+                       valor_click:arma.valor_click,
+                       codigo_imagem:arma.codigo_imagem,
+                       valor_desbloqueio:arma.valor_desbloqueio,
+                       id:arma.id,
+                       tipoUpgrade:arma.tipoUpgrade,
+                       valorUpgrade:arma.valorUpgrade,
+                       adquiridoUpgrade:arma.adquiridoUpgrade,
+                   })
+           } catch (error) {
+               console.log(error)
+           }
+            
             window.alert("comprado")
-            if(arma.tipoUpgrade === "Autoclicker"){
-                setIniciado(true)
-            }
+          
         }
         
     }
@@ -85,7 +67,6 @@ function UpgradeContainer({visible, setVisible, armas,setArmas,setDetergente,det
                         Sair
                     </button>
                 </div>
-                
             </div>
         )
     }

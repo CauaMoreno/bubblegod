@@ -14,11 +14,13 @@ export async function getDataFromUser(session:Session) {
        return data
      }
 }
-export async function firstLogin(session:Session) {
+export async function signOut() {
+  const { error } = await supabase.auth.signOut()
+}export async function firstLogin(session:Session) {
     const user= await supabase.from('user').select().eq('uuid', session?.user.id).single()
     console.log(user.data)
     if (user.data!=null) {
-    //    return
+        return
     } else {
         updateProfile({detergente:0,session:session})
     }
