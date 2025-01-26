@@ -4,12 +4,13 @@ import './App.css'
 import Game from "./paginas/GameScreen/Game"
 import Login from "./paginas//LoginScreen/LoginScreen"
 
-import {  Route, Routes } from 'react-router'
+import {  HashRouter, Route, Routes } from 'react-router'
 import { useEffect, useState } from 'react'
 import {    updateProfile } from './componentes/Api/config'
 import LoreContainer from './componentes/LoreContainer/LoreContainer'
 import UpgradeContainer from './componentes/UpgradeContainer/UpgradeContainer'
 import {Arma, Lore} from './tipos'
+import { BrowserRouter } from 'react-router'
 
 const supabaseUrl = 'https://hcsmsnyvmcgkgvnppedi.supabase.co';
 const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imhjc21zbnl2bWNna2d2bnBwZWRpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Mzc3NzAxMjksImV4cCI6MjA1MzM0NjEyOX0.hjWIEc7zSW5xL7X2tHydujCl55yDPWY6aT30hi-80NM'
@@ -84,26 +85,28 @@ function App() {
     }
     return(
         <div>
-            <Routes>
-                <Route path="/bubbleguns/" element={<Login 
-                setSession={setSession} 
-                session={session}
-                />} /> 
-                
-                <Route path="/bubbleguns/game" element={
-                    <Game 
-                        salvarjogo={salvar} 
-                        armas={armas} 
-                        setDetergente={setDetergente} 
-                        detergente={Detergentes}
-                        setUpgradeVisible={setShowUpgrade}  
-                        session={session}
-                        setSession={setSession}
-                        showLore={()=>{
-                            setLoreVisible(true)
-                        }}  />} /> 
-                
-            </Routes>
+            <BrowserRouter>
+                <Routes>
+                    <Route path="/bubbleguns" element={<Login 
+                    setSession={setSession} 
+                    session={session}
+                    />} /> 
+                    
+                    <Route path="/bubbleguns/game" element={
+                        <Game 
+                            salvarjogo={salvar} 
+                            armas={armas} 
+                            setDetergente={setDetergente} 
+                            detergente={Detergentes}
+                            setUpgradeVisible={setShowUpgrade}  
+                            session={session}
+                            setSession={setSession}
+                            showLore={()=>{
+                                setLoreVisible(true)
+                            }}  />} /> 
+                </Routes>
+            </BrowserRouter>
+            
             <UpgradeContainer 
                 armas={armas} 
                 setArmas={setArmas} 
