@@ -1,0 +1,70 @@
+.Gun{
+    display: flex;
+    justify-content:space-between ;
+    align-items: center;
+    border: 5px solid black;
+    border-radius: 10px;
+    color: white;
+    width: 80%;
+    height: auto;
+    padding: 10px;
+    max-width: 500px;
+    background-color: #204056;
+    flex-wrap: wrap;
+    img{
+        width: 80px;
+        height: 80px;
+        border-radius: 10px;
+    }
+    .info{
+        display: flex;
+        align-items: center;
+        flex-direction: row;
+        gap: 5px;
+    }
+    .status{
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        font-size: 15px;
+       background-color: black;
+       padding: 10px;
+       border-radius: 10px;
+       min-width: 120px;
+       
+    }
+    
+    .status:active{
+        background-color: #4d7072;
+
+    }
+    p{
+        padding: 0%;
+        margin: 0%;
+    }
+   
+}                                                       
+.block{
+    filter: grayscale(1) opacity(0.8);
+}
+
+.blink {
+    background-color: black;
+
+    filter: opacity(0.5);
+
+}
+.blink:active {
+    background-color: black !important;
+}
+@keyframes blink {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+    }
+} 
